@@ -242,6 +242,7 @@ mode = "location"
 
 [[language]]
 name = "rust"
+codestats = "Rust"
 scope = "source.rust"
 injection-regex = "rs|rust"
 file-types = ["rs"]
@@ -892,6 +893,7 @@ comment-token = "#"
 language-servers = ["ruff", "jedi", "pylsp"]
 # TODO: pyls needs utf-8 offsets
 indent = { tab-width = 4, unit = "    " }
+codestats = "Python"
 
 [[grammar]]
 name = "python"
