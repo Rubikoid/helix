@@ -1,6 +1,7 @@
 use crate::{
     align_view,
     document::{DocumentSavedEventFuture, DocumentSavedEventResult, Mode, SavePoint},
+    events::Quit,
     graphics::{CursorKind, Rect},
     handlers::Handlers,
     info::Info,
@@ -12,6 +13,7 @@ use crate::{
     Align, Document, DocumentId, View, ViewId,
 };
 use dap::StackFrame;
+use helix_event::dispatch;
 use helix_vcs::DiffProviderRegistry;
 
 use futures_util::stream::select_all::SelectAll;
@@ -1640,6 +1642,8 @@ impl Editor {
         }
         self.tree.remove(id);
         self._refresh();
+
+        dispatch(Quit { view: id });
     }
 
     pub fn close_document(&mut self, doc_id: DocumentId, force: bool) -> Result<(), CloseError> {

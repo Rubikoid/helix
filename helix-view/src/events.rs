@@ -6,4 +6,5 @@ use crate::{Document, ViewId};
 events! {
     DocumentDidChange<'a> { doc: &'a mut Document, view: ViewId, old_text: &'a Rope  }
     SelectionDidChange<'a> { doc: &'a mut Document, view: ViewId }
+    Quit { view: ViewId }
 }
