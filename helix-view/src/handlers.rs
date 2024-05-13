@@ -1,6 +1,7 @@
-use helix_event::send_blocking;
+use helix_event::{send_blocking};
 use tokio::sync::mpsc::Sender;
 
+use crate::codestats::CodeStatsEvent;
 use crate::handlers::lsp::SignatureHelpInvoked;
 use crate::{DocumentId, Editor, ViewId};
 
@@ -11,6 +12,7 @@ pub struct Handlers {
     // only public because most of the actual implementation is in helix-term right now :/
     pub completions: Sender<lsp::CompletionEvent>,
     pub signature_hints: Sender<lsp::SignatureHelpEvent>,
+    pub codestats: Sender<CodeStatsEvent>,
 }
 
 impl Handlers {
@@ -37,5 +39,9 @@ impl Handlers {
             SignatureHelpInvoked::Manual => lsp::SignatureHelpEvent::Invoked,
         };
         send_blocking(&self.signature_hints, event)
+    }
+
+    pub fn trigger_codestats_send(&self) {
+        send_blocking(&self.codestats, CodeStatsEvent::ForceSend);
     }
 }

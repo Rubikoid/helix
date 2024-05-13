@@ -5,6 +5,7 @@ use crate::job::Job;
 
 use super::*;
 
+use crate::codestats::{typeablecmd_get_info, typeablecmd_send_info};
 use helix_core::fuzzy::fuzzy_match;
 use helix_core::indent::MAX_INDENT;
 use helix_core::{encoding, line_ending, shellwords::Shellwords};
@@ -3067,6 +3068,20 @@ pub const TYPABLE_COMMAND_LIST: &[TypableCommand] = &[
         doc: "Yank diagnostic(s) under primary cursor to register, or clipboard by default",
         fun: yank_diagnostic,
         signature: CommandSignature::all(completers::register),
+    },
+    TypableCommand {
+        name: "codestats-get-info",
+        aliases: &["csgi"],
+        doc: "Get info about codestats logs",
+        fun: typeablecmd_get_info,
+        signature: CommandSignature::none(),
+    },
+    TypableCommand {
+        name: "codestats-send-info",
+        aliases: &["cssi"],
+        doc: "Send info to codestats",
+        fun: typeablecmd_send_info,
+        signature: CommandSignature::none(),
     },
 ];
 

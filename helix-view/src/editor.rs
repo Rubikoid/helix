@@ -469,6 +469,7 @@ impl Default for StatusLineConfig {
                 E::Register,
                 E::Position,
                 E::FileEncoding,
+                E::CodeStats,
             ],
             separator: String::from("│"),
             mode: ModeConfig::default(),
@@ -559,6 +560,9 @@ pub enum StatusLineElement {
 
     /// Indicator for selected register
     Register,
+
+    /// CodeStats info
+    CodeStats,
 }
 
 // Cursor shape is read and used on every rendered frame and so needs

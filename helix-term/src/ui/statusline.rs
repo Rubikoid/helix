@@ -7,6 +7,7 @@ use helix_view::{
     Document, Editor, View,
 };
 
+use crate::codestats::count_total_xp;
 use crate::ui::ProgressSpinners;
 
 use helix_view::editor::StatusLineElement as StatusLineElementID;
@@ -155,6 +156,7 @@ fn get_render_function<'a>(
         helix_view::editor::StatusLineElement::Spacer => render_spacer,
         helix_view::editor::StatusLineElement::VersionControl => render_version_control,
         helix_view::editor::StatusLineElement::Register => render_register,
+        helix_view::editor::StatusLineElement::CodeStats => render_codestats_counter,
     }
 }
 
@@ -458,4 +460,8 @@ fn render_register<'a>(context: &RenderContext) -> Spans<'a> {
     } else {
         Spans::default()
     }
+}
+
+fn render_codestats_counter<'a>(context: &RenderContext) -> Spans<'a> {
+    Span::raw(format!(" CS:{0} ", count_total_xp())).into()
 }

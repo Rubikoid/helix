@@ -1,3 +1,4 @@
+use crate::codestats;
 use crate::keymap;
 use crate::keymap::{merge_keys, KeyTrie};
 use helix_loader::merge_toml_values;
@@ -14,6 +15,7 @@ pub struct Config {
     pub theme: Option<String>,
     pub keys: HashMap<Mode, KeyTrie>,
     pub editor: helix_view::editor::Config,
+    pub codestats: codestats::Config,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -22,6 +24,7 @@ pub struct ConfigRaw {
     pub theme: Option<String>,
     pub keys: Option<HashMap<Mode, KeyTrie>>,
     pub editor: Option<toml::Value>,
+    pub codestats: Option<toml::Value>,
 }
 
 impl Default for Config {
@@ -30,6 +33,7 @@ impl Default for Config {
             theme: None,
             keys: keymap::default(),
             editor: helix_view::editor::Config::default(),
+            codestats: codestats::Config::default(),
         }
     }
 }
@@ -84,10 +88,21 @@ impl Config {
                         .map_err(ConfigLoadError::BadConfig)?,
                 };
 
+                let codestats = match (global.codestats, local.codestats) {
+                    (None, None) => codestats::Config::default(),
+                    (None, Some(val)) | (Some(val), None) => {
+                        val.try_into().map_err(ConfigLoadError::BadConfig)?
+                    }
+                    (Some(global), Some(local)) => merge_toml_values(global, local, 3)
+                        .try_into()
+                        .map_err(ConfigLoadError::BadConfig)?,
+                };
+
                 Config {
                     theme: local.theme.or(global.theme),
                     keys,
                     editor,
+                    codestats: codestats,
                 }
             }
             // if any configs are invalid return that first
@@ -105,6 +120,10 @@ impl Config {
                     keys,
                     editor: config.editor.map_or_else(
                         || Ok(helix_view::editor::Config::default()),
+                        |val| val.try_into().map_err(ConfigLoadError::BadConfig),
+                    )?,
+                    codestats: config.codestats.map_or_else(
+                        || Ok(codestats::Config::default()),
                         |val| val.try_into().map_err(ConfigLoadError::BadConfig),
                     )?,
                 }
