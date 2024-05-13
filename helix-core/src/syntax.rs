@@ -172,6 +172,9 @@ pub struct LanguageConfiguration {
     pub workspace_lsp_roots: Option<Vec<PathBuf>>,
     #[serde(default)]
     pub persistent_diagnostic_sources: Vec<String>,
+
+    #[serde(default, rename = "codestats")]
+    pub codestats_language: Option<String>,
 }
 
 #[derive(Debug, PartialEq, Eq, Hash)]

@@ -17,6 +17,7 @@ pub mod register;
 pub mod theme;
 pub mod tree;
 pub mod view;
+pub mod codestats;
 
 use std::num::NonZeroUsize;
 

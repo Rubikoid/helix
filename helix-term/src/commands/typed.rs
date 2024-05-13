@@ -6,6 +6,7 @@ use crate::job::Job;
 
 use super::*;
 
+use crate::codestats::{typeablecmd_get_info, typeablecmd_send_info};
 use helix_core::fuzzy::fuzzy_match;
 use helix_core::indent::MAX_INDENT;
 use helix_core::{line_ending, shellwords::Shellwords};
@@ -3159,6 +3160,20 @@ pub const TYPABLE_COMMAND_LIST: &[TypableCommand] = &[
         doc: "Load a file into buffer",
         fun: read,
         signature: CommandSignature::positional(&[completers::filename]),
+    },
+    TypableCommand {
+        name: "codestats-get-info",
+        aliases: &["csgi"],
+        doc: "Get info about codestats logs",
+        fun: typeablecmd_get_info,
+        signature: CommandSignature::none(),
+    },
+    TypableCommand {
+        name: "codestats-send-info",
+        aliases: &["cssi"],
+        doc: "Send info to codestats",
+        fun: typeablecmd_send_info,
+        signature: CommandSignature::none(),
     },
 ];
 
