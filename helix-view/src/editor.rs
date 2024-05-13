@@ -1,10 +1,13 @@
 use crate::{
+    align_view,
     annotations::diagnostics::{DiagnosticFilter, InlineDiagnosticsConfig},
     clipboard::ClipboardProvider,
     document::{
         DocumentOpenError, DocumentSavedEventFuture, DocumentSavedEventResult, Mode, SavePoint,
     },
+    document::{DocumentSavedEventFuture, DocumentSavedEventResult, Mode, SavePoint},
     events::DocumentFocusLost,
+    events::Quit,
     graphics::{CursorKind, Rect},
     handlers::Handlers,
     info::Info,
@@ -1782,6 +1785,8 @@ impl Editor {
         }
         self.tree.remove(id);
         self._refresh();
+
+        dispatch(Quit { view: id });
     }
 
     pub fn close_document(&mut self, doc_id: DocumentId, force: bool) -> Result<(), CloseError> {
