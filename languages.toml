@@ -315,6 +315,7 @@ source = { git = "https://github.com/FuelLabs/tree-sitter-sway", rev = "e491a005
 
 [[language]]
 name = "toml"
+codestats = "TOML"
 scope = "source.toml"
 injection-regex = "toml"
 file-types = ["toml", { glob = "pdm.lock" }, { glob = "poetry.lock" }, { glob = "Cargo.lock" }, { glob = "uv.lock" }]
@@ -884,6 +885,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-html", rev = "29f53
 
 [[language]]
 name = "python"
+codestats = "Python"
 scope = "source.python"
 injection-regex = "py(thon)?"
 file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
@@ -893,7 +895,6 @@ comment-token = "#"
 language-servers = ["ruff", "jedi", "pylsp"]
 # TODO: pyls needs utf-8 offsets
 indent = { tab-width = 4, unit = "    " }
-codestats = "Python"
 
 [[grammar]]
 name = "python"
@@ -921,6 +922,7 @@ source = { git = "https://github.com/nickel-lang/tree-sitter-nickel", rev = "88d
 
 [[language]]
 name = "nix"
+codestats = "Nix"
 scope = "source.nix"
 injection-regex = "nix"
 file-types = ["nix"]
@@ -985,6 +987,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-ruby", rev = "206c7
 
 [[language]]
 name = "bash"
+codestats = "Shell Script"
 scope = "source.bash"
 injection-regex = "(shell|bash|zsh|sh)"
 file-types = [
@@ -1351,6 +1354,7 @@ source = { git = "https://github.com/ikatyang/tree-sitter-vue", rev = "91fe27547
 
 [[language]]
 name = "yaml"
+codestats = "YAML"
 scope = "source.yaml"
 file-types = ["yml", "yaml", { glob = ".prettierrc" }, { glob = ".clangd" }, { glob = ".clang-format" }, { glob = ".clang-tidy" }]
 comment-token = "#"
@@ -1644,6 +1648,7 @@ source = { git = "https://github.com/Flakebi/tree-sitter-tablegen", rev = "3e9c4
 
 [[language]]
 name = "markdown"
+codestats = "Markdown"
 scope = "source.md"
 injection-regex = "md|markdown"
 file-types = ["md", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "mdown", "markdn", "mdtxt", "mdtext", "workbook", { glob = "PULLREQ_EDITMSG" }]
@@ -1957,6 +1962,7 @@ source = { git = "https://github.com/JoranHonig/tree-sitter-solidity", rev = "f7
 
 [[language]]
 name = "gleam"
+codestats = "Gleam"
 scope = "source.gleam"
 injection-regex = "gleam"
 file-types = ["gleam"]
@@ -3476,6 +3482,7 @@ source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-bitbake", 
 
 [[language]]
 name = "log"
+codestats = "Log"
 scope = "source.log"
 file-types = ["log"]
 
