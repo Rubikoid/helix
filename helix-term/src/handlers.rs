@@ -4,7 +4,6 @@ use arc_swap::ArcSwap;
 use helix_event::AsyncHook;
 
 use crate::config::Config;
-use crate::events;
 use crate::handlers::auto_save::AutoSaveHandler;
 use crate::handlers::completion::CompletionHandler;
 use crate::handlers::signature_help::SignatureHelpHandler;

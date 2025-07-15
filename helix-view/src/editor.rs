@@ -1,11 +1,9 @@
 use crate::{
-    align_view,
     annotations::diagnostics::{DiagnosticFilter, InlineDiagnosticsConfig},
     clipboard::ClipboardProvider,
     document::{
         DocumentOpenError, DocumentSavedEventFuture, DocumentSavedEventResult, Mode, SavePoint,
     },
-    document::{DocumentSavedEventFuture, DocumentSavedEventResult, Mode, SavePoint},
     events::DocumentFocusLost,
     events::Quit,
     graphics::{CursorKind, Rect},

@@ -18,7 +18,7 @@ use helix_view::{
 
 use crate::{compositor, config::Config as GlobalConfig, events::PostInsertChar, ui::PromptEvent};
 use arc_swap::ArcSwap;
-use helix_event::{register_hook, send_blocking, send_blocking_freezing, CancelTx};
+use helix_event::{register_hook, send_blocking, send_blocking_freezing};
 use helix_view::handlers::Handlers;
 use serde::{Deserialize, Serialize};
 
@@ -41,7 +41,6 @@ impl Default for Config {
 #[derive(Debug)]
 pub(super) struct CodeStatsHandler {
     trigger: Option<CodeStatsEvent>,
-    request: Option<CancelTx>,
     config: Arc<ArcSwap<GlobalConfig>>,
     agent: Agent,
     last_send: DateTime<Local>,
@@ -60,7 +59,6 @@ impl CodeStatsHandler {
 
         CodeStatsHandler {
             trigger: None,
-            request: None,
             config: config,
             agent: agent,
             last_send: local_time,

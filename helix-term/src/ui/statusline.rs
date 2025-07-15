@@ -534,6 +534,9 @@ where
     }
 }
 
-fn render_codestats_counter<'a>(context: &RenderContext) -> Spans<'a> {
-    Span::raw(format!(" CS:{0} ", count_total_xp())).into()
+fn render_codestats_counter<F>(context: &mut RenderContext, write: F)
+where
+    F: Fn(&mut RenderContext, String, Option<Style>) + Copy,
+{
+    write(context, format!(" CS:{0} ", count_total_xp()), None);
 }
