@@ -450,6 +450,7 @@ source = { git = "https://github.com/sogaiu/tree-sitter-janet-simple", rev = "51
 
 [[language]]
 name = "json"
+codestats = "JSON"
 scope = "source.json"
 injection-regex = "json"
 file-types = [
@@ -513,6 +514,7 @@ source = { git = "https://github.com/Joakker/tree-sitter-json5", rev = "c23f7a9b
 
 [[language]]
 name = "c"
+codestats = "C"
 scope = "source.c"
 injection-regex = "c"
 file-types = ["c"] # TODO: ["h"]
@@ -655,6 +657,7 @@ source = { git = "https://github.com/jzelinskie/tree-sitter-spicedb", rev = "a4e
 
 [[language]]
 name = "go"
+codestats = "Go"
 scope = "source.go"
 injection-regex = "go"
 file-types = ["go"]
@@ -1048,6 +1051,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-bash", rev = "f8fb3
 
 [[language]]
 name = "php"
+codestats = "PHP"
 scope = "source.php"
 injection-regex = "php"
 file-types = ["php", "inc", "php4", "php5", "phtml", "ctp"]
@@ -1377,6 +1381,7 @@ grammar = "yaml"
 
 [[language]]
 name = "haskell"
+codestats = "Haskell"
 scope = "source.haskell"
 injection-regex = "hs|haskell"
 file-types = ["hs", "hs-boot", "hsc"]
@@ -1703,6 +1708,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-scala", rev = "7891
 
 [[language]]
 name = "dockerfile"
+codestats = "Docker"
 scope = "source.dockerfile"
 injection-regex = "docker|dockerfile"
 roots = ["Dockerfile", "Containerfile"]
@@ -1740,6 +1746,7 @@ grammar = "yaml"
 
 [[language]]
 name = "git-commit"
+codestats = "Git Commit Message"
 scope = "git.commitmsg"
 file-types = [{ glob = "COMMIT_EDITMSG" }, { glob = "MERGE_MSG" }]
 comment-token = "#"
@@ -1765,6 +1772,7 @@ source = { git = "https://github.com/the-mikedavis/tree-sitter-diff", rev = "fd7
 
 [[language]]
 name = "git-rebase"
+codestats = "Git Rebase Message"
 scope = "source.gitrebase"
 file-types = [{ glob = "git-rebase-todo" }]
 injection-regex = "git-rebase"
@@ -1787,6 +1795,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-regex", rev = "e1cf
 
 [[language]]
 name = "git-config"
+codestats = "Git Config"
 scope = "source.gitconfig"
 file-types = [{ glob = ".gitmodules" }, { glob = ".gitconfig" }, { glob = ".git/config" }, { glob = ".config/git/config" }]
 injection-regex = "git-config"
@@ -1811,6 +1820,7 @@ source = { git = "https://github.com/mtoohey31/tree-sitter-gitattributes", rev =
 
 [[language]]
 name = "git-ignore"
+codestats = "Ignore"
 scope = "source.gitignore"
 file-types = [{ glob = ".gitignore_global" }, { glob = "git/ignore" }, { glob = ".ignore" }, { glob = "CODEOWNERS" }, { glob = ".config/helix/ignore" }, { glob = ".helix/ignore" }, { glob = ".*ignore" }]
 injection-regex = "git-ignore"
@@ -2093,6 +2103,7 @@ source = { git = "https://github.com/phoenixframework/tree-sitter-heex", rev = "
 
 [[language]]
 name = "sql"
+codestats = "SQL"
 scope = "source.sql"
 file-types = ["sql", "dsql"]
 comment-token = "--"
@@ -2269,6 +2280,7 @@ source = { git = "https://github.com/staysail/tree-sitter-meson", rev = "32a83e8
 
 [[language]]
 name = "sshclientconfig"
+codestats = "ssh_config"
 scope = "source.sshclientconfig"
 file-types = [{ glob = ".ssh/config" }, { glob = "/etc/ssh/ssh_config" }, { glob = "ssh_config.d/*.conf" } ]
 comment-token = "#"
@@ -2798,6 +2810,7 @@ source = { git = "https://github.com/hh9527/tree-sitter-wit", rev = "c917790ab9a
 
 [[language]]
 name = "env"
+codestats = "Properties"
 scope = "source.env"
 file-types = [{ glob = ".env" }, { glob = ".env.*" }, { glob = ".envrc" }, { glob = ".envrc.*" }]
 injection-regex = "env"
@@ -2987,6 +3000,7 @@ source = { git = "https://github.com/ath3/tree-sitter-passwd", rev = "20239395ea
 
 [[language]]
 name = "hosts"
+codestats = "Plain Text"
 scope = "source.hosts"
 file-types = [{ glob = "hosts" }]
 comment-token = "#"
@@ -3319,6 +3333,7 @@ block-comment-tokens = { start = "{#", end = "#}" }
 
 [[language]]
 name = "jinja"
+codestats = "jinja"
 scope = "text.html.jinja"
 injection-regex = "jinja"
 file-types = ["jinja", "jinja2", "j2"]
