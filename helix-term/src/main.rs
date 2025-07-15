@@ -86,7 +86,7 @@ FLAGS:
     }
 
     if args.display_version {
-        println!("helix {}", VERSION_AND_GIT_HASH);
+        println!("helix {}; +codestats", VERSION_AND_GIT_HASH);
         std::process::exit(0);
     }
 

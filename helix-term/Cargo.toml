@@ -16,18 +16,18 @@ homepage.workspace = true
 # generate a .deb in target/debian/ with the command: cargo deb --no-build
 name = "helix"
 assets = [
-  { source = "target/release/hx", dest = "/usr/lib/helix/", mode = "755" },
-  { source = "../contrib/hx_launcher.sh", dest = "/usr/bin/hx", mode = "755" },
-  { source = "../runtime/*", dest = "/usr/lib/helix/runtime/", mode = "644" },
-  { source = "../runtime/grammars/*", dest = "/usr/lib/helix/runtime/grammars/", mode = "644" }, # to avoid sources/
-  { source = "../runtime/queries/**/*", dest = "/usr/lib/helix/runtime/queries/", mode = "644" },
-  { source = "../runtime/themes/**/*", dest = "/usr/lib/helix/runtime/themes/", mode = "644" },
-  { source = "../README.md", dest = "/usr/share/doc/helix/", mode = "644" },
-  { source = "../contrib/completion/hx.bash", dest = "/usr/share/bash-completion/completions/hx", mode = "644" },
-  { source = "../contrib/completion/hx.fish", dest = "/usr/share/fish/vendor_completions.d/hx.fish", mode = "644" },
-  { source = "../contrib/completion/hx.zsh", dest = "/usr/share/zsh/vendor-completions/_hx", mode = "644" },
-  { source = "../contrib/Helix.desktop", dest = "/usr/share/applications/Helix.desktop", mode = "644" },
-  { source = "../contrib/helix.png", dest = "/usr/share/icons/hicolor/256x256/apps/helix.png", mode = "644" },
+    { source = "target/release/hx", dest = "/usr/lib/helix/", mode = "755" },
+    { source = "../contrib/hx_launcher.sh", dest = "/usr/bin/hx", mode = "755" },
+    { source = "../runtime/*", dest = "/usr/lib/helix/runtime/", mode = "644" },
+    { source = "../runtime/grammars/*", dest = "/usr/lib/helix/runtime/grammars/", mode = "644" },                     # to avoid sources/
+    { source = "../runtime/queries/**/*", dest = "/usr/lib/helix/runtime/queries/", mode = "644" },
+    { source = "../runtime/themes/**/*", dest = "/usr/lib/helix/runtime/themes/", mode = "644" },
+    { source = "../README.md", dest = "/usr/share/doc/helix/", mode = "644" },
+    { source = "../contrib/completion/hx.bash", dest = "/usr/share/bash-completion/completions/hx", mode = "644" },
+    { source = "../contrib/completion/hx.fish", dest = "/usr/share/fish/vendor_completions.d/hx.fish", mode = "644" },
+    { source = "../contrib/completion/hx.zsh", dest = "/usr/share/zsh/vendor-completions/_hx", mode = "644" },
+    { source = "../contrib/Helix.desktop", dest = "/usr/share/applications/Helix.desktop", mode = "644" },
+    { source = "../contrib/helix.png", dest = "/usr/share/icons/hicolor/256x256/apps/helix.png", mode = "644" },
 ]
 
 [features]
@@ -53,12 +53,27 @@ helix-loader = { path = "../helix-loader" }
 anyhow = "1"
 once_cell = "1.20"
 
-tokio = { version = "1", features = ["rt", "rt-multi-thread", "io-util", "io-std", "time", "process", "macros", "fs", "parking_lot"] }
-tui = { path = "../helix-tui", package = "helix-tui", default-features = false, features = ["crossterm"] }
+tokio = { version = "1", features = [
+    "rt",
+    "rt-multi-thread",
+    "io-util",
+    "io-std",
+    "time",
+    "process",
+    "macros",
+    "fs",
+    "parking_lot",
+] }
+tui = { path = "../helix-tui", package = "helix-tui", default-features = false, features = [
+    "crossterm",
+] }
 crossterm = { version = "0.28", features = ["event-stream"] }
 signal-hook = "0.3"
 tokio-stream = "0.1"
-futures-util = { version = "0.3", features = ["std", "async-await"], default-features = false }
+futures-util = { version = "0.3", features = [
+    "std",
+    "async-await",
+], default-features = false }
 arc-swap = { version = "1.7.1" }
 termini = "1"
 
@@ -90,12 +105,19 @@ serde = { version = "1.0", features = ["derive"] }
 grep-regex = "0.1.13"
 grep-searcher = "0.1.14"
 
-[target.'cfg(not(windows))'.dependencies]  # https://github.com/vorner/signal-hook/issues/100
+# codestats interaction
+ureq = { version = "2.9.7", features = ["json"] }
+
+[target.'cfg(not(windows))'.dependencies] # https://github.com/vorner/signal-hook/issues/100
 signal-hook-tokio = { version = "0.3", features = ["futures-v0_3"] }
 libc = "0.2.169"
 
 [target.'cfg(target_os = "macos")'.dependencies]
-crossterm = { version = "0.28", features = ["event-stream", "use-dev-tty", "libc"] }
+crossterm = { version = "0.28", features = [
+    "event-stream",
+    "use-dev-tty",
+    "libc",
+] }
 
 [build-dependencies]
 helix-loader = { path = "../helix-loader" }

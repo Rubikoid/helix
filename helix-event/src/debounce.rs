@@ -68,3 +68,12 @@ pub fn send_blocking<T>(tx: &Sender<T>, data: T) {
         let _ = block_on(tx.send_timeout(data, Duration::from_millis(10)));
     }
 }
+
+pub fn send_blocking_freezing<T>(tx: &Sender<T>, data: T) {
+    // block_on has some overhead and in practice the channel should basically
+    // never be full anyway so first try sending without blocking
+    if let Err(TrySendError::Full(data)) = tx.try_send(data) {
+        // set a timeout so that we just drop a message instead of freezing the editor in the worst case
+        let _ = block_on(tx.send_timeout(data, Duration::from_millis(1000)));
+    }
+}
